@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:core="http://java.sun.com/jsf/core"
+	xmlns:html="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<html:head>
+</html:head>
+<html:body>
+	<core:view>
+		<html:form>
+			<p:dataTable value="#{listeLivresEmpruntes.livres}" var="livre">
+				<p:column sortable="true" sortBy="#{livre.id}">
+					<core:facet name="header">
+						<core:verbatim>Ref</core:verbatim>
+					</core:facet>
+					<html:outputText value="#{livre.id}" />
+				</p:column>
+
+				<p:column sortable="true" sortBy="#{livre.titre}">
+					<core:facet name="header">
+						<core:verbatim>Titre</core:verbatim>
+					</core:facet>
+					<html:outputText value="#{livre.titre}" />
+				</p:column>
+
+				<p:column sortable="true" sortBy="#{livre.auteur}">
+					<core:facet name="header">
+						<core:verbatim>Auteur</core:verbatim>
+					</core:facet>
+					<html:outputText value="#{livre.auteur}" />
+				</p:column>
+
+				<p:column sortable="true" sortBy="#{livre.resume}">
+					<core:facet name="header">
+						<core:verbatim>Resume</core:verbatim>
+					</core:facet>
+					<html:outputText value="#{livre.resume}" />
+				</p:column>
+
+				<p:column>
+					<core:facet name="header">
+						<core:verbatim>Image</core:verbatim>
+					</core:facet>
+					<html:graphicImage value="#{livre.image}" />
+				</p:column>
+
+				<p:column>
+					<core:facet name="header">
+						<core:verbatim>Selectionner</core:verbatim>
+					</core:facet>
+					<html:selectBooleanCheckbox
+						value="#{listeLivresEmpruntes.checked[livre.id]}" />
+				</p:column>
+			</p:dataTable>
+			<html:commandButton value="Rendre les livres"
+				action="#{listeLivresEmpruntes.rendreLivres}">
+			</html:commandButton>
+		</html:form>
+	</core:view>
+
+</html:body>
+</html>

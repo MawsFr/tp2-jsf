@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:core="http://java.sun.com/jsf/core"
+	xmlns:html="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<html:head>
+	<title>Login</title>
+</html:head>
+<html:body>
+	<core:view>
+		<h1>Log in</h1>
+		<html:form>
+			<html:outputText value="Nom " />
+			<html:inputText value="#{inscription.nom}" />
+			<br />
+			<html:outputText value="Prenom " />
+			<html:inputText value="#{inscription.prenom}" />
+			<br />
+			<html:outputText value="Age " />
+			<html:outputText value="#{inscription.age}" id="age"/>
+			<br />
+			<html:outputText value="Adresse Email " />
+			<html:inputText value="#{inscription.login}"
+				validator="loginValidator" />
+			<br />
+			<html:outputText value="Mot de Passe " />
+			<html:inputSecret value="#{inscription.password}" />
+			<br />
+			<html:selectBooleanCheckbox value="#{inscription.droitImage}" /> Droit a l'image
+			<br />
+			Date de naissance : <p:calendar pattern="d-M-yyyy" id="date"
+				value="#{inscription.dateDeNaissance}" size="20" required="true"
+				label="Date de naissance">
+				<core:ajax event="keyup" render="age"></core:ajax>
+				<p:ajax event="dateSelect" update="age" />
+				<core:convertDateTime pattern="d-M-yyyy" />
+			</p:calendar>
+			<br />
+			<html:selectOneRadio layout="pageDirection"
+				value="#{inscription.civilite}">
+				<core:selectItem itemValue="1" itemLabel="Mademoiselle" />
+				<core:selectItem itemValue="2" itemLabel="Madame" />
+				<core:selectItem itemValue="3" itemLabel="Monsieur" />
+			</html:selectOneRadio>
+
+			<html:commandButton value="S'(inscrire)"
+				action="#{inscription.validate}" />
+			<html:commandButton value="Annuler" action="CancelAction"
+				immediate="true" />
+		</html:form>
+	</core:view>
+</html:body>
+</html>

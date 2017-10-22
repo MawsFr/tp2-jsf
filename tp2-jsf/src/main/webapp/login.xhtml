@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:core="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:html="http://java.sun.com/jsf/html">
+<html:head>
+	<title>Login</title>
+</html:head>
+<html:body>
+	<core:view>
+		<h1>Log in</h1>
+		<html:form>
+			<html:outputText value="Adresse Email " />
+			<html:inputText value="#{loginbean.login}" />
+			<br />
+			<html:outputText value="Mot de Passe " />
+			<html:inputSecret value="#{loginbean.password}"/>
+			<br />
+			<html:commandButton value="Connecter" action="#{loginbean.validate}"/>
+		</html:form>
+		<html:outputLink value="inscription.xhtml">Inscription</html:outputLink><br />
+	</core:view>
+</html:body>
+</html>
